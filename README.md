@@ -5,7 +5,7 @@
 | Day 01 | :star: :star: |               |               |               |               |               |               |
 | Day 02 | :star: :star: |               |               |               |               |               |               |
 | Day 03 | :star: :star: |               |               |               |               |               |               |
-| Day 04 | :star:        |               |               |               |               |               |               |
+| Day 04 | :star: :star: |               |               |               |               |               |               |
 | Day 05 |               |               |               |               |               |               |               |
 | Day 06 |               |               |               |               |               |               |               |
 | Day 07 |               |               |               |               |               |               |               |
