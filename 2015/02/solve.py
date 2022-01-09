@@ -11,12 +11,23 @@ def wrapping_paper_required ( l, w, h, debug = False ):
     print(f"{l}x{w}x{h} requires {wrapping_paper} square feet of wrapping paper.")
   return wrapping_paper
 
+def ribbon_required ( l, w, h, debug = False ):
+  base_length = 2*(l + w + h - max(l, w, h))
+  bow = l * w * h
+  if debug:
+    print(f"{l}x{w}x{h} requires {base_length} + {bow} feet of ribbon.")
+  return base_length + bow
+
 if __name__ == "__main__":
   with input_file.open() as f:
     data = f.read().strip()
     data = data.split("\n")
-    total = 0
+    total_wrapping_paper = 0
+    total_ribbon = 0
     for line in data:
       l, w, h = [int(x) for x in line.split("x")]
-      total += wrapping_paper_required(l, w, h)
-    print(f"Part 1: The total wrapping paper required is {total} square feet.")
+      total_wrapping_paper += wrapping_paper_required(l, w, h)
+      total_ribbon += ribbon_required(l, w, h)
+
+    print(f"Part 1: The total wrapping paper required is {total_wrapping_paper} square feet.")
+    print(f"Part 2: The total ribbon required is {total_ribbon} feet.")
