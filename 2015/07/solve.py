@@ -122,9 +122,7 @@ def emulate_circuit_op2 ( circuit, target, opcode, source1, source2, debug = Fal
 
 ### Main ###
 
-def emulate_circuit ( instructions, debug = False ) :
-  circuit = {}
-
+def emulate_circuit ( circuit, instructions, debug = False ) :
   if debug :
     print(f"Parsing instructions")
   operations = {}
@@ -194,5 +192,7 @@ def emulate_circuit ( instructions, debug = False ) :
 if __name__ == "__main__":
   with open(input_file, "r") as f:
     instructions = [x.strip() for x in f.readlines()]
-    circuit = emulate_circuit(instructions, True)
+    circuit = emulate_circuit({}, instructions)
     print(f"Part 1: Wire a ends up with value {circuit['a']}")
+    circuit = emulate_circuit({'b': circuit['a']}, instructions)
+    print(f"Part 2: Wire a ends up with value {circuit['a']}")
