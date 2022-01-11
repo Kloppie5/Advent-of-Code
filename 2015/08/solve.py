@@ -25,21 +25,34 @@ def small_step_number_of_characters_in_string ( string ):
 
   return characters_in_string
 
+def number_of_characters_in_encoded_string ( string ) :
+  return \
+    len(string) \
+    + string.count('\\') \
+    + string.count('\"') \
+    + 2
+
 if __name__ == "__main__":
   debug = False
 
   total_characters_in_string = 0
   total_characters_in_memory = 0
+  total_characters_in_encoded_string = 0
   with open(input_file, "r") as f:
     for line in f:
       line = line.strip()
-      characters_in_string = small_step_number_of_characters_in_string(line)
-      characters_in_memory = len(line)
+      characters_in_string = len(line)
+      characters_in_memory = small_step_number_of_characters_in_string(line)
+      characters_in_encoded_string = number_of_characters_in_encoded_string(line)
       total_characters_in_string += characters_in_string
       total_characters_in_memory += characters_in_memory
+      total_characters_in_encoded_string += characters_in_encoded_string
       if debug :
-        print(f"{line} - {characters_in_string} characters in string, {characters_in_memory} characters in memory")
+        print(f"{line} - {characters_in_string} characters in string, {characters_in_memory} characters in memory, {characters_in_encoded_string} characters in encoded string")
   if debug :
     print(f"Total characters in string: {total_characters_in_string}")
     print(f"Total characters in memory: {total_characters_in_memory}")
-  print(f"Part 1: Difference: {total_characters_in_memory - total_characters_in_string}")
+  print(f"Part 1: Difference: {total_characters_in_string - total_characters_in_memory}")
+  if debug :
+    print(f"Total characters in encoded string: {total_characters_in_encoded_string}")
+  print(f"Part 2: Difference: {total_characters_in_encoded_string - total_characters_in_string}")
