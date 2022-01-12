@@ -10,7 +10,7 @@
 | Day 06 | :star: :star: |               |               |               |               |               |               |
 | Day 07 | :star: :star: |               |               |               |               |               |               |
 | Day 08 | :star: :star: |               |               |               |               |               |               |
-| Day 09 |               |               |               |               |               |               |               |
+| Day 09 | :star:        |               |               |               |               |               |               |
 | Day 10 |               |               |               |               |               |               |               |
 | Day 11 |               |               |               |               |               |               |               |
 | Day 12 |               |               |               |               |               |               |               |
