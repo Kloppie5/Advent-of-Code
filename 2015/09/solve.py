@@ -31,3 +31,4 @@ if __name__ == "__main__":
 
   routes = all_routes(distances)
   print(f"Part 1: Shortest route: {min(routes.values())}")
+  print(f"Part 2: Longest route: {max(routes.values())}")
