@@ -53,3 +53,8 @@ if __name__ == "__main__":
   while ( not validate_password(password) ) :
     password = increment_password(password)
   print(f"Part 1: The next valid password: {password}")
+
+  password = increment_password(password)
+  while ( not validate_password(password) ) :
+    password = increment_password(password)
+  print(f"Part 2: The next valid password: {password}")
