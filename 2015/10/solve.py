@@ -30,3 +30,5 @@ if __name__ == "__main__":
     start = f.readline().strip()
   word = look_and_say(start, 40)
   print(f"Part 1: After 40 rounds, the input as length {len(word)}; {word}")
+  word = look_and_say(word, 10)
+  print(f"Part 2: After 50 rounds, the input as length {len(word)}; {word}")
