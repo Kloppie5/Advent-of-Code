@@ -44,3 +44,11 @@ if __name__ == "__main__":
     print(data)
 
   print(f"Part 1: {find_optimal_arrangement(data, debug)[1]}")
+
+  original_people = list(data.keys())
+  data["Me"] = {}
+  for key in original_people :
+    data[key]["Me"] = 0
+    data["Me"][key] = 0
+
+  print(f"Part 2: {find_optimal_arrangement(data, debug)[1]}")
