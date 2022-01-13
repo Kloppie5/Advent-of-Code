@@ -15,7 +15,7 @@
 | Day 11 | :star: :star: |               |               |               |               |               |               |
 | Day 12 | :star: :star: |               |               |               |               |               |               |
 | Day 13 | :star: :star: |               |               |               |               |               |               |
-| Day 14 | :star:        |               |               |               |               |               |               |
+| Day 14 | :star: :star: |               |               |               |               |               |               |
 | Day 15 |               |               |               |               |               |               |               |
 | Day 16 |               |               |               |               |               |               |               |
 | Day 17 |               |               |               |               |               |               |               |

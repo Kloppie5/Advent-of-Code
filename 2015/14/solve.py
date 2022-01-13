@@ -34,8 +34,48 @@ def race ( data, time, debug = False ) :
     results[reindeer] = distance
   return results
 
+def simulated_race ( data, time, debug = False ) :
+  results = {}
+  distances = {}
+  burst = {}
+  sleep = {}
+
+  for (reindeer, speed, duration, rest) in data :
+    results[reindeer] = 0
+    distances[reindeer] = 0
+    burst[reindeer] = duration
+    sleep[reindeer] = 0
+
+  for t in range(time):
+    for (reindeer, speed, duration, rest) in data :
+      if sleep[reindeer] > 0 :
+        sleep[reindeer] -= 1
+        continue
+
+      burst[reindeer] -= 1
+      distances[reindeer] += speed
+
+      if burst[reindeer] == 0 :
+        burst[reindeer] = duration
+        sleep[reindeer] = rest
+
+    best = max(distances.values())
+    for reindeer in results :
+      if distances[reindeer] == best :
+        results[reindeer] += 1
+
+    if debug :
+      print(f"{t} : {list(results.values())} {list(distances.values())} {list(burst.values())} {list(sleep.values())}")
+
+  return results
+
+
 if __name__ == "__main__":
   data = parse_input(input_file)
   results = race(data, 2503)
+  print(results)
   winner = max(results, key=results.get)
-  print(f"The winner is {winner} with a total distance of {results[winner]}")
+  print(f"Part 1: The winner is {winner} with a total distance of {results[winner]}")
+  results = simulated_race(data, 2503, True)
+  winner = max(results, key=results.get)
+  print(f"Part 2: The winner is {winner} with a total score of {results[winner]}")
