@@ -1,3 +1,5 @@
+import copy
+
 from pathlib import Path
 input_file = Path(__file__).parent / "input"
 
@@ -37,24 +39,35 @@ def mark_boards_new ( boards, number ) :
     for board in boards ]
 
 def check_win ( boards ) :
+  winners = []
   for board in boards :
     for i in range(0, len(board)) :
       if sum(board[i]) == -5 :
-        return board
+        winners.append(board)
+        break
       if sum([row[i] for row in board]) == -5 :
-        return board
-  return None
+        winners.append(board)
+        break
+  return winners
+def remove_winners ( boards, winners ) :
+  boards_new = []
+  for board in boards :
+    if board not in winners :
+      boards_new.append(board)
+  return boards_new
+
 def calculate_score ( board ) :
   return sum([sum([x for x in row if x != -1]) for row in board])
 
 if __name__ == "__main__":
   numbers, boards = parse_input(input_file)
+  win_scores = []
   for number in numbers :
-    # print(f"Marking {number}")
     mark_boards(boards, number)
-    winner = check_win(boards)
-    if winner is not None :
-      final_number = number
-      break
+    winners = check_win(boards)
+    if winners != [] :
+      win_scores.append(number * calculate_score(winners[0]))
+      boards = remove_winners(boards, winners)
 
-  print(f"Part 1: {final_number * calculate_score(winner)}")
+  print(f"Part 1: {win_scores[0]}")
+  print(f"Part 2: {win_scores[-1]}")
