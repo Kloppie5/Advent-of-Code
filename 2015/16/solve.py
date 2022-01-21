@@ -34,6 +34,39 @@ def find_sues ( data, ticker_tape, debug = False ) :
       sues.append(sue)
   return sues
 
+def find_real_sues ( data, ticker_tape, debug = False ) :
+  sues = []
+  for sue in data :
+    sue_data = data[sue]
+    correct = True
+    for prop in ticker_tape :
+      if prop in sue_data :
+        if prop in ["cats", "trees"] :
+          if sue_data[prop] <= ticker_tape[prop] :
+            if debug :
+              print(f"{sue} has too few {prop} ({sue_data[prop]} vs {ticker_tape[prop]})")
+            correct = False
+            break
+          continue
+
+        if prop in ["pomeranians", "goldfish"] :
+          if sue_data[prop] >= ticker_tape[prop] :
+            if debug :
+              print(f"{sue} has too many {prop} ({sue_data[prop]} vs {ticker_tape[prop]})")
+            correct = False
+            break
+          continue
+
+        if sue_data[prop] != ticker_tape[prop] :
+          if debug :
+            print(f"{sue} has an invalid amount of {prop} ({sue_data[prop]} vs {ticker_tape[prop]})")
+          correct = False
+          break
+
+    if correct :
+      sues.append(sue)
+  return sues
+
 if __name__ == "__main__":
   data = parse_input(input_file)
   ticker_tape = {
@@ -50,3 +83,5 @@ if __name__ == "__main__":
   }
   sue = find_sues(data, ticker_tape)
   print(f"Part 1: Sues {sue}")
+  sue = find_real_sues(data, ticker_tape)
+  print(f"Part 2: Sues {sue}")
