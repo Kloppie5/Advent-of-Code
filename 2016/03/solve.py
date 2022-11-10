@@ -18,3 +18,14 @@ for line in input :
     print(f"Invalid triangle: {line}")
 
 print(f"Valid triangles: {count}")
+
+# count valid triangles vertically
+count = 0
+for i in range(0, len(input), 3) :
+  for j in range(3) :
+    if input[i][j] + input[i + 1][j] > input[i + 2][j] and input[i][j] + input[i + 2][j] > input[i + 1][j] and input[i + 1][j] + input[i + 2][j] > input[i][j] :
+      count += 1
+    else :
+      print(f"Invalid vertical triangle: {input[i][j]}, {input[i + 1][j]}, {input[i + 2][j]}")
+
+print(f"Valid vertical triangles: {count}")
