@@ -13,6 +13,7 @@ print(instructions)
 x = 0
 y = 0
 direction = 0
+visited = set()
 
 # loop through instructions
 for instruction in instructions :
@@ -25,16 +26,23 @@ for instruction in instructions :
   # get distance
   distance = int(instruction[1:])
   
-  # move
-  if direction == 0 :
-    y += distance
-  elif direction == 1 :
-    x += distance
-  elif direction == 2 :
-    y -= distance
-  elif direction == 3 :
-    x -= distance
+  # loop through distance
+  for i in range(distance) :
+    # move
+    if direction == 0 :
+      y += 1
+    elif direction == 1 :
+      x += 1
+    elif direction == 2 :
+      y -= 1
+    else :
+      x -= 1
+      
+    # check if visited
+    if (x, y) in visited :
+      print(f"Visited twice at ({x}, {y}), distance = {abs(x) + abs(y)}")
+    visited.add((x, y))
 
 # calculate distance
 distance = abs(x) + abs(y)
-print(f"Distance: {distance}")
+print(f"Final distance: {distance}")
