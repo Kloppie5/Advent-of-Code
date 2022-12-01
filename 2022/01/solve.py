@@ -26,7 +26,12 @@ def total_calories_for_elf ( elf ) :
 
 if __name__ == "__main__":
     elves = parse_input()
-    
+
     total_calories = [ total_calories_for_elf(elf) for elf in elves ]
     most_calories = max(total_calories)
     print(f"Part 1: {most_calories}")
+
+    sorted_calories = sorted(total_calories)
+    top_3 = sorted_calories[-3:]
+    sum_of_top_3 = sum(top_3)
+    print (f"Part 2: {sum_of_top_3}")
