@@ -12,13 +12,20 @@ def parse_input ( debug = False ) :
 if __name__ == "__main__":
     assignments = parse_input()
     
-    overlaps = 0
+    complete_overlaps = 0
     for assignment in assignments :
         if assignment[0][0] <= assignment[1][0] <= assignment[0][1] and assignment[0][0] <= assignment[1][1] <= assignment[0][1] :
-            print(f"{assignment[1]} is in {assignment[0]}")
-            overlaps += 1
+            complete_overlaps += 1
         elif assignment[1][0] <= assignment[0][0] <= assignment[1][1] and assignment[1][0] <= assignment[0][1] <= assignment[1][1] :
-            print(f"{assignment[0]} is in {assignment[1]}")
-            overlaps += 1
+            complete_overlaps += 1
     
-    print(f"Part 1: {overlaps} overlaps")
+    print(f"Part 1: {complete_overlaps} overlaps")
+
+    overlaps = 0
+    for assignment in assignments :
+        if assignment[0][0] <= assignment[1][0] <= assignment[0][1] or assignment[0][0] <= assignment[1][1] <= assignment[0][1] :
+            overlaps += 1
+        elif assignment[1][0] <= assignment[0][0] <= assignment[1][1] or assignment[1][0] <= assignment[0][1] <= assignment[1][1] :
+            overlaps += 1
+
+    print(f"Part 2: {overlaps} overlaps")
