@@ -43,13 +43,25 @@ if __name__ == "__main__":
     print("Initial state:")
     print_stacks(stacks)
 
+    stacks_9000 = stacks
+    stacks_9001 = stacks.copy()
+
     for count, src, dest in procedures :
-        move = stacks[src-1][-count:]
-        stacks[src-1] = stacks[src-1][:-count]
-        print(f"Moving {move} from {src} to {dest}")
-        move = move[::-1]
-        stacks[dest-1] += move
-        print_stacks(stacks)
+        print('-'*20)
+        move_9000 = stacks_9000[src-1][-count:]
+        stacks_9000[src-1] = stacks_9000[src-1][:-count]
+        print(f"9000: Moving {move_9000} from {src} to {dest}")
+        move_9000 = move_9000[::-1]
+        stacks_9000[dest-1] += move_9000
+        print_stacks(stacks_9000)
+
+        move_9001 = stacks_9001[src-1][-count:]
+        stacks_9001[src-1] = stacks_9001[src-1][:-count]
+        print(f"9001: Moving {move_9001} from {src} to {dest}")
+        stacks_9001[dest-1] += move_9001
+        print_stacks(stacks_9001)
     
-    final_message = ''.join([stack[-1] for stack in stacks])
-    print(f"Final message: {final_message}")
+    final_message_9000 = ''.join([stack[-1] for stack in stacks_9000])
+    print(f"Final message CrateMover 9000: {final_message_9000}")
+    final_message_9001 = ''.join([stack[-1] for stack in stacks_9001])
+    print(f"Final message CrateMover 9001: {final_message_9001}")
