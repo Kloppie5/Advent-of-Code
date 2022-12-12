@@ -85,19 +85,22 @@ def calculate_dir_sizes ( file_system, debug = False ) :
         return size
     return calculate_dir_size(file_system["/"])
 
-def find_small_dirs ( file_system, threshold, debug = False ) :
-    found_small_dirs = []
-    def find_small_dirs_in_dir ( dir, depth ) :
+def all_dirs ( file_system ) :
+    dirs = []
+    def find_dirs ( dir ) :
         for entry in dir :
             if entry == "type" or entry == "size" :
                 continue
             if dir[entry]["type"] == "dir" :
-                if dir[entry]["size"] < threshold :
-                    print(f"{'  ' * depth}- {entry} (dir, size={dir[entry]['size']})")
-                    found_small_dirs.append(dir[entry])
-                find_small_dirs_in_dir(dir[entry], depth + 1)
-    find_small_dirs_in_dir(file_system["/"], 0)
-    return found_small_dirs
+                dirs.append(dir[entry])
+                find_dirs(dir[entry])
+    find_dirs(file_system)
+    return dirs
+
+def sort_dirs ( file_system ) :
+    dirs = all_dirs(file_system)
+    dirs.sort(key = lambda dir : dir["size"])
+    return dirs
 
 if __name__ == "__main__":
     file_system = {
@@ -113,10 +116,19 @@ if __name__ == "__main__":
     calculate_dir_sizes(file_system)
     print_file_system(file_system)
 
-    small_dirs = find_small_dirs(file_system, 100000)
+    sorted_dirs = sort_dirs(file_system["/"])
+    small_dirs = [dir for dir in sorted_dirs if dir["size"] < 100000]
     print(f"Found {len(small_dirs)} small directories")
 
     total_size = 0
     for small_dir in small_dirs :
         total_size += small_dir["size"]
     print(f"Total size of small directories: {total_size}")
+
+    used_disk_space = file_system["/"]["size"]
+    required_free_space = used_disk_space - 40000000
+    print(f"Used disk space: {used_disk_space}")
+    print(f"Required free space: {required_free_space}")
+    # first dir that is big enough
+    smallest_dir = [dir for dir in sorted_dirs if dir["size"] >= required_free_space][0]
+    print(f"Size of smallest dir that is big enough: {smallest_dir['size']}")
