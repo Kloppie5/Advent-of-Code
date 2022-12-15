@@ -23,7 +23,7 @@ def parse_input ( filename ) :
         data[i]["activity"] = 0
     return data
 
-def turn ( monkeys, index, debug = False ) :
+def turn ( monkeys, index, stress_reduction, division_cap, debug = False ) :
     monkey = monkeys[index]
     if debug :
         print(f"Monkey {index}:")
@@ -31,10 +31,10 @@ def turn ( monkeys, index, debug = False ) :
         worry = monkey["starting_items"].pop(0)
         if debug :
             print(f"  Monkey inspects an item with a worry level of {worry}.")
-        worry = eval(monkey["operation"], {"x":worry})
+        worry = (eval(monkey["operation"], {"x":worry})) % division_cap
         if debug :
             print(f"    Monkey applies the operation. The worry level is now {worry}.")
-        worry = worry // 3
+        worry = worry // stress_reduction
         if debug :
             print(f"    :| Monkey gets bored easily. The worry level is now {worry}.")
         if worry % monkey["test"] == 0 :
@@ -56,17 +56,30 @@ def print_monkeys ( monkeys ) :
         print(f"Monkey {i}: [{monkey['activity']}] {monkey['starting_items']}")
     print()
 
-def round ( monkeys, debug = False ) :
+def round ( monkeys, stress_reduction, division_cap, debug = False ) :
     for i in range(len(monkeys)) :
-        turn(monkeys, i, debug)
+        turn(monkeys, i, stress_reduction, division_cap, debug)
+
 
 if __name__ == "__main__" :
     monkeys = parse_input("input")
     print_monkeys(monkeys)
+    division_cap = 1
+    for monkey in monkeys :
+        division_cap *= monkey["test"]
 
     for i in range(20) :
-        round(monkeys, True)
+        round(monkeys, 3, division_cap)
         print_monkeys(monkeys)
     
     activity = sorted([monkey["activity"] for monkey in monkeys])
     print(f"Part 1: {activity[-2:]} = {activity[-2] * activity[-1]}")
+
+    monkeys = parse_input("input")
+    for i in range(10000) :
+        if i % 100 == 0 :
+            print(f"Round {i:5}: " + "|" * (i // 100) + "." * (100 - (i // 100)))
+        round(monkeys, 1, division_cap)
+    
+    activity = sorted([monkey["activity"] for monkey in monkeys])
+    print(f"Part 2: {activity[-2:]} = {activity[-2] * activity[-1]}")
