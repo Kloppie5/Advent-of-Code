@@ -13,7 +13,7 @@
 | Day 09 | :star: :star: |               |               |               |               |               |               | :star: :star: |
 | Day 10 | :star: :star: |               |               |               |               |               |               | :star: :star: |
 | Day 11 | :star: :star: |               |               |               |               |               |               | :star: :star: |
-| Day 12 | :star: :star: |               |               |               |               |               |               | :star:        |
+| Day 12 | :star: :star: |               |               |               |               |               |               | :star: :star: |
 | Day 13 | :star: :star: |               |               |               |               |               |               |               |
 | Day 14 | :star: :star: |               |               |               |               |               |               |               |
 | Day 15 | :star: :star: |               |               |               |               |               |               |               |

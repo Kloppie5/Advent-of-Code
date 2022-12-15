@@ -63,9 +63,7 @@ def print_heightmap_directions ( heightmap ) :
             print(boi_characters[character], end="")
         print()
 
-def calculate_distances ( heightmap, S ) :
-    queue = [S]
-    heightmap[S[0]][S[1]]["distance"] = 0
+def calculate_distances ( heightmap, queue ) :
     while len(queue) > 0:
         (i, j) = queue.pop(0)
         if heightmap[i][j]["up"] and i > 0 and "distance" not in heightmap[i-1][j]:
@@ -80,6 +78,20 @@ def calculate_distances ( heightmap, S ) :
         if heightmap[i][j]["right"] and j < len(heightmap[i]) - 1 and "distance" not in heightmap[i][j+1]:
             heightmap[i][j+1]["distance"] = heightmap[i][j]["distance"] + 1
             queue.append((i, j+1))
+
+def calculate_distances_to_start ( heightmap, S ) :
+    queue = [S]
+    heightmap[S[0]][S[1]]["distance"] = 0
+    calculate_distances(heightmap, queue)
+
+def calculate_distances_to_any_a ( heightmap ) :
+    queue = []
+    for i in range(len(heightmap)):
+        for j in range(len(heightmap[i])):
+            if heightmap[i][j]["height"] == 0:
+                heightmap[i][j]["distance"] = 0
+                queue.append((i, j))
+    calculate_distances(heightmap, queue)
 
 def print_heightmap_distances ( heightmap ) :
     for i in range(len(heightmap)):
@@ -115,9 +127,22 @@ if __name__ == "__main__" :
     calculate_directions(heightmap)
     print_heightmap_directions(heightmap)
     
-    calculate_distances(heightmap, S)
+    calculate_distances_to_start(heightmap, S)
     print_heightmap_distances(heightmap)
 
     print_heightmap_path(heightmap, E)
 
     print(f"Part 1: {heightmap[E[0]][E[1]]['distance']}")
+
+    ## ----
+
+    heightmap, S, E = parse_input("input")
+    calculate_directions(heightmap)
+    print_heightmap_directions(heightmap)
+    
+    calculate_distances_to_any_a(heightmap)
+    print_heightmap_distances(heightmap)
+
+    print_heightmap_path(heightmap, E)
+
+    print(f"Part 2: {heightmap[E[0]][E[1]]['distance']}")
