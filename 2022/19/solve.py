@@ -181,4 +181,12 @@ if __name__ == "__main__" :
         total_quality += quality_level
         print(f"Blueprint {i+1}: {highest_geodes} geodes, quality level {quality_level}")
     
-    print(f"Total Quality: {total_quality}")
+
+    geode_value = 1
+    for blueprint in blueprints[:3] :
+        highest_geodes = find_most_geodes(blueprint, 32)
+        print(f"Blueprint {blueprint}: {highest_geodes} geodes")
+        geode_value *= highest_geodes
+
+    print(f"Part 1: Total Quality: {total_quality}")
+    print(f"Part 2: Geode Value: {geode_value}")
