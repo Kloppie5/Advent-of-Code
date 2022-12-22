@@ -23,7 +23,7 @@
 | Day 19 |               |               |               |               |               |               |               | :star: :star: |
 | Day 20 |               |               |               |               |               |               |               | :star: :star: |
 | Day 21 |               |               |               |               |               |               |               | :star: :star: |
-| Day 22 |               |               |               |               |               |               |               | :star:        |
+| Day 22 |               |               |               |               |               |               |               | :star: :star: |
 | Day 23 |               |               |               |               |               |               |               |               |
 | Day 24 |               |               |               |               |               |               |               |               |
 | Day 25 |               |               |               |               |               |               |               |               |
