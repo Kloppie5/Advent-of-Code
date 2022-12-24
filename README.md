@@ -25,5 +25,5 @@
 | Day 21 |               |               |               |               |               |               |               | :star: :star: |
 | Day 22 |               |               |               |               |               |               |               | :star: :star: |
 | Day 23 |               |               |               |               |               |               |               | :star: :star: |
-| Day 24 |               |               |               |               |               |               |               |               |
+| Day 24 |               |               |               |               |               |               |               | :star: :star: |
 | Day 25 |               |               |               |               |               |               |               |               |
