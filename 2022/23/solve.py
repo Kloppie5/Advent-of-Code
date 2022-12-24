@@ -25,10 +25,11 @@ def map_size ( map ) :
     return max_x - min_x + 1, max_y - min_y + 1
 
 def round ( map, dir_offset ) :
+    new_map = {}
     proposals = {}
     for x, y in map :
         if (x-1, y-1) not in map and (x-1, y) not in map and (x-1, y+1) not in map and (x, y-1) not in map and (x, y+1) not in map and (x+1, y-1) not in map and (x+1, y) not in map and (x+1, y+1) not in map :
-            proposals[(x, y)] = proposals.get((x, y), []) + [(x, y)]
+            new_map[(x, y)] = map[(x, y)]
             continue
         for i in range(4) :
             dir = (i + dir_offset) % 4
@@ -45,17 +46,19 @@ def round ( map, dir_offset ) :
                 proposals[(x, y+1)] = proposals.get((x, y+1), []) + [(x, y)]
                 break
         else :
-            proposals[(x, y)] = proposals.get((x, y), []) + [(x, y)]
+            new_map[(x, y)] = map[(x, y)]
     
-    new_map = {}
+    change = False
     for x, y in proposals :
         if len(proposals[(x, y)]) > 1 :
             for source_x, source_y in proposals[(x, y)] :
                 new_map[(source_x, source_y)] = map[(source_x, source_y)]
         else :
+            if (x, y) not in map :
+                change = True
             new_map[(x, y)] = map[proposals[(x, y)][0]]
 
-    return new_map
+    return new_map, change
 
 def print_map ( map ) :
     min_x = min(x for x, y in map)
@@ -78,10 +81,25 @@ if __name__ == "__main__" :
     map = parse_input("input")
 
     for i in range(10) :
-        map = round(map, i)
+        map, change = round(map, i)
     print_map(map)
     
     map_height, map_width = map_size(map)
     empty_space = map_height * map_width - len(map)
 
     print(f"Part 1: {empty_space}")
+
+
+
+    map = parse_input("input")
+
+    i = 0
+    while True :
+        map, change = round(map, i)
+        i += 1
+        if not change :
+            break
+    
+    print_map(map)
+    
+    print(f"Part 2: {i}")
