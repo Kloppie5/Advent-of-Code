@@ -22,5 +22,5 @@ def solve ( filename ) :
     return result
 
 if __name__ == "__main__" :
-    print(f"Test result: {solve('test')}")
+    print(f"Test result: {solve('test 1')}")
     print(f"Input result: {solve('input')}")
