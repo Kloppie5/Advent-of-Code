@@ -2,7 +2,7 @@
 
 |        |      2015     |      2016     |      2017     |      2018     |      2019     |      2020     |      2021     |      2022     |      2023     |      2024     |
 | :----- | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-| Day 01 | :star: :star: | :star: :star: |               |               |               |               | :star: :star: | :star: :star: | :star: :star: | :star: :star: |
+| Day 01 | :star: :star: | :star: :star: | :star: :star: |               |               |               | :star: :star: | :star: :star: | :star: :star: | :star: :star: |
 | Day 02 | :star: :star: | :star: :star: |               |               |               |               | :star: :star: | :star: :star: | :star: :star: |               |
 | Day 03 | :star: :star: | :star: :star: |               |               |               |               | :star: :star: | :star: :star: | :star: :star: |               |
 | Day 04 | :star: :star: |               |               |               |               |               | :star: :star: | :star: :star: | :star: :star: |               |
